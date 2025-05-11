@@ -1,0 +1,83 @@
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
+
+const App = () => {
+  const [email, setEmail] = useState('');
+  const [service, setService] = useState('');
+
+  const handleSubmit = () => {
+    alert(`تم إرسال طلبك! 📨\nالبريد الإلكتروني: ${email}\nالخدمة: ${service}`);
+  };
+
+  return (
+    <div style={styles.container}>
+      <h1 style={styles.heading}>مرحبًا بك في <strong>سوشيالي</strong> 🚀</h1>
+      <p>اختَر خدمة زيادة المتابعين المفضلة لديك:</p>
+
+      <div style={styles.services}>
+        <button style={styles.button} onClick={() => setService('زيادة متابعين Instagram')}>زيادة متابعين Instagram</button>
+        <button style={styles.button} onClick={() => setService('زيادة متابعين Facebook')}>زيادة متابعين Facebook</button>
+        <button style={styles.button} onClick={() => setService('زيادة مشاهدات YouTube')}>زيادة مشاهدات YouTube</button>
+      </div>
+
+      <input 
+        type="email" 
+        placeholder="أدخل بريدك الإلكتروني" 
+        value={email} 
+        onChange={(e) => setEmail(e.target.value)} 
+        style={styles.input}
+      />
+      
+      <button onClick={handleSubmit} style={styles.submitButton}>إرسال الطلب</button>
+
+      {service && <p>تم اختيار الخدمة: {service}</p>}
+    </div>
+  );
+};
+
+const styles = {
+  container: {
+    fontFamily: 'Arial, sans-serif',
+    direction: 'rtl',
+    backgroundColor: '#f4f4f9',
+    color: '#333',
+    textAlign: 'center',
+    padding: '20px',
+  },
+  heading: {
+    color: '#2d87f0',
+    fontSize: '36px',
+  },
+  services: {
+    margin: '20px 0',
+  },
+  button: {
+    padding: '10px 20px',
+    margin: '10px',
+    backgroundColor: '#2d87f0',
+    color: 'white',
+    border: 'none',
+    borderRadius: '5px',
+    fontSize: '16px',
+    cursor: 'pointer',
+  },
+  input: {
+    padding: '10px',
+    margin: '20px',
+    width: '80%',
+    maxWidth: '400px',
+    borderRadius: '5px',
+    border: '1px solid #ccc',
+  },
+  submitButton: {
+    backgroundColor: '#f39c12',
+    color: 'white',
+    padding: '10px 20px',
+    fontSize: '16px',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+  },
+};
+
+ReactDOM.render(<App />, document.getElementById('root'));
